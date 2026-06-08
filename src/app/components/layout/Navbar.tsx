@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import { Link, useLocation } from 'react-router';
 
-interface NavbarProps {
-  currentPath?: string;
-}
-
-export function Navbar({ currentPath = '/' }: NavbarProps) {
+export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   useEffect(() => {
     setMounted(true);
@@ -19,13 +18,20 @@ export function Navbar({ currentPath = '/' }: NavbarProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Fermer le menu mobile à chaque changement de route
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
   const navLinks = [
     { href: '/',         label: 'Accueil'  },
     { href: '/projets',  label: 'Projets'  },
     { href: '/a-propos', label: 'À propos' },
-    { href: '/cv',       label: 'CV'       },
     { href: '/contact',  label: 'Contact'  },
   ];
+
+  const isActive = (href: string) =>
+    href === '/' ? currentPath === '/' : currentPath.startsWith(href);
 
   if (!mounted) return null;
 
@@ -36,7 +42,7 @@ export function Navbar({ currentPath = '/' }: NavbarProps) {
       }`}>
         <div className="max-w-[1200px] mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <a href="/" className="font-['JetBrains_Mono'] font-semibold text-lg"
+            <Link to="/" className="font-['JetBrains_Mono'] font-semibold text-lg"
               style={{
                 background: 'linear-gradient(135deg, #F97316, #EC4899)',
                 WebkitBackgroundClip: 'text',
@@ -44,25 +50,22 @@ export function Navbar({ currentPath = '/' }: NavbarProps) {
                 backgroundClip: 'text',
               }}>
               AE.
-            </a>
+            </Link>
 
             <div className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
-                <a key={link.href} href={link.href}
+                <Link key={link.href} to={link.href}
                   className={`text-sm transition-colors ${
-                    currentPath === link.href
-                      ? 'font-medium'
-                      : 'text-foreground/70 hover:text-foreground'
+                    isActive(link.href) ? 'font-medium' : 'text-foreground/70 hover:text-foreground'
                   }`}
-                  style={currentPath === link.href ? {
+                  style={isActive(link.href) ? {
                     background: 'linear-gradient(135deg, #F97316, #EC4899)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
-                  } : {}}
-                >
+                  } : {}}>
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
 
@@ -84,17 +87,17 @@ export function Navbar({ currentPath = '/' }: NavbarProps) {
         <div className="fixed inset-0 z-40 bg-background md:hidden pt-[72px]">
           <div className="px-6 py-8 flex flex-col gap-6">
             {navLinks.map((link) => (
-              <a key={link.href} href={link.href}
-                className={`text-xl transition-colors ${currentPath === link.href ? 'font-medium' : 'text-foreground'}`}
-                style={currentPath === link.href ? {
+              <Link key={link.href} to={link.href}
+                className={`text-xl transition-colors ${isActive(link.href) ? 'font-medium' : 'text-foreground'}`}
+                style={isActive(link.href) ? {
                   background: 'linear-gradient(135deg, #F97316, #EC4899)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
-                } : {}}
-                onClick={() => setIsMobileMenuOpen(false)}>
+                } : {}}>
+                
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

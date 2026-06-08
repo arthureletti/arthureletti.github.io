@@ -18,7 +18,7 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-semibold mb-4">Projet non trouvé</h1>
-          <a href="/projets" className="text-[#2563EB] hover:underline">
+          <a to="/projets" className="text-[#2563EB] hover:underline">
             Retour aux projets
           </a>
         </div>
@@ -32,7 +32,7 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
 
       <div className="pt-24 pb-20">
         <div className="max-w-[1200px] mx-auto px-6">
-          <BackButton href="/projets" label="Retour aux projets" />
+          <BackButton to="/projets" label="Retour aux projets" />
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -128,7 +128,7 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                       N'hésitez pas à me contacter pour en discuter davantage.
                     </p>
                     <a
-                      href="/contact"
+                      to="/contact"
                       className="block text-center px-4 py-2 bg-[#2563EB] text-white rounded-lg hover:bg-[#1d4ed8] transition-colors font-medium"
                     >
                       Me contacter

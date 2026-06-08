@@ -4,6 +4,7 @@ import { TimelineItem } from '../components/about/TimelineItem';
 import { SocialLinks } from '../components/common/SocialLinks';
 import { profile, timeline } from '../data/mockData';
 import { motion } from 'motion/react';
+import { Link } from 'react-router';
 import { Download, Mail } from 'lucide-react';
 
 export function AboutPage() {
@@ -12,7 +13,7 @@ export function AboutPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar currentPath="/a-propos" />
+      <Navbar />
 
       <div className="pt-24 pb-20">
         <div className="max-w-[1200px] mx-auto px-6">
@@ -46,7 +47,7 @@ export function AboutPage() {
                     Télécharger CV
                   </a>
                   <a
-                    href="/contact"
+                    to="/contact"
                     className="inline-flex items-center gap-2 px-6 py-3 border border-border rounded-lg hover:bg-accent transition-colors font-medium"
                   >
                     <Mail className="w-4 h-4" />

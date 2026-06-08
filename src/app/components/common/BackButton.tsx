@@ -1,18 +1,12 @@
 import { ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router';
 
-interface BackButtonProps {
-  href?: string;
-  label?: string;
-}
+interface BackButtonProps { to?: string; label?: string; }
 
-export function BackButton({ href = '/', label = 'Retour' }: BackButtonProps) {
+export function BackButton({ to = '/', label = 'Retour' }: BackButtonProps) {
   return (
-    <a
-      href={href}
-      className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-[#2563EB] transition-colors mb-6"
-    >
-      <ArrowLeft className="w-4 h-4" />
-      {label}
-    </a>
+    <Link to={to} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-[#F97316] transition-colors mb-6">
+      <ArrowLeft className="w-4 h-4" />{label}
+    </Link>
   );
 }

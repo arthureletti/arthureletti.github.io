@@ -25,7 +25,7 @@ export function ProjectsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar currentPath="/projets" />
+      <Navbar />
 
       <div className="pt-24 pb-12">
         <div className="max-w-[1200px] mx-auto px-6">
