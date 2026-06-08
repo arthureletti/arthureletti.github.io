@@ -57,7 +57,9 @@ export function ContactPage() {
                     <div>
                       <h3 className="font-semibold mb-1">Localisation</h3>
                       <p className="text-sm text-muted-foreground">
-                        Paris, France
+                        Niort, France
+                              &
+                        Guéret, France
                       </p>
                     </div>
                   </div>
