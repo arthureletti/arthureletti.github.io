@@ -4,8 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Arthur Eletti — Data Analyst</title>
-    <meta name="description" content="Portfolio d'Arthur Eletti, étudiant en BUT Science des Données à l'IUT de Niort. Projets de data analyse, visualisation et bases de données." />
+    <meta name="description" content="Portfolio d'Arthur Eletti, étudiant en BUT Science des Données à l'IUT de Niort." />
     <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
+    <script>
+      // Restore redirect from 404.html
+      (function(){
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
