@@ -29,12 +29,7 @@ function StatItem({ value, label, suffix = '', prefix = '' }: StatCounterProps) 
   return (
     <div ref={ref} className="text-center">
       <div className="text-4xl md:text-5xl font-['JetBrains_Mono'] font-semibold mb-2"
-        style={{
-          background: 'linear-gradient(135deg, #F97316, #EC4899)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-        }}>
+        style={{ background: 'linear-gradient(135deg, #F97316, #EC4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
         {prefix}{count}{suffix}
       </div>
       <div className="text-sm text-muted-foreground">{label}</div>
@@ -49,9 +44,9 @@ export function StatCounter() {
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.6 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-8 p-8 rounded-[12px] border border-border bg-card">
-          <StatItem value={8}  label="Projets réalisés" suffix="+" />
-          <StatItem value={1}  label="Année de formation" />
+          <StatItem value={8}   label="Projets réalisés"   suffix="+" />
           <StatItem value={373} label="Répondants enquêtés" suffix="+" />
+          <StatItem value={2}   label="Ans d'études data"  />
         </motion.div>
       </div>
     </section>

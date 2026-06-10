@@ -16,7 +16,7 @@ import { useLocation } from 'react-router';
 
 function HomePage() {
   return (
-    <div className="min-h-screen bg-background text-foreground font-['Plus_Jakarta_Sans']">
+    <div className="min-h-screen bg-background text-foreground font-['Inter']">
       <Navbar currentPath="/" />
       <main>
         <HeroBanner />
@@ -34,7 +34,7 @@ function ProjectDetailWrapper() {
   const location = useLocation();
   const slug = location.pathname.replace('/projets/', '');
   return (
-    <div className="min-h-screen bg-background text-foreground font-['Plus_Jakarta_Sans']">
+    <div className="min-h-screen bg-background text-foreground font-['Inter']">
       <ProjectDetailPage slug={slug} />
     </div>
   );
