@@ -87,10 +87,9 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                   {project.tags.map((tag) => <TagBadge key={tag.id} tag={tag} />)}
                 </div>
 
-                <div className="prose prose-slate max-w-none">
-                  <div className="text-base leading-relaxed whitespace-pre-line text-foreground">
-                    {project.body}
-                  </div>
+                <div className="text-base leading-relaxed whitespace-pre-line text-foreground"
+                  style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
+                  {project.body}
                 </div>
               </div>
 
