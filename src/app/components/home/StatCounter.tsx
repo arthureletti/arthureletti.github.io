@@ -44,7 +44,7 @@ export function StatCounter() {
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.6 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-8 p-8 rounded-[12px] border border-border bg-card">
-          <StatItem value={9}   label="Projets réalisés"   suffix="+" />
+          <StatItem value={10}  label="Projets réalisés"   suffix="+" />
           <StatItem value={373} label="Répondants enquêtés" suffix="+" />
           <StatItem value={2}   label="Ans d'études data"  />
         </motion.div>

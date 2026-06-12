@@ -10,6 +10,7 @@ import { Link } from 'react-router';
 interface ProjectDetailPageProps { slug: string; }
 
 const FILE_ICONS: Record<string, any> = {
+  r:      Code2,
   pdf:    FileText,
   pbix:   Package,
   xlsx:   FileText,
@@ -20,6 +21,7 @@ const FILE_ICONS: Record<string, any> = {
 };
 
 const FILE_LABELS: Record<string, string> = {
+  r:      'Script R',
   pdf:    'PDF',
   pbix:   'Power BI',
   xlsx:   'Excel',

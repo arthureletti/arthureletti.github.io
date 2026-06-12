@@ -9,7 +9,7 @@ export interface Tag {
 export interface ProjectFile {
   label: string;
   url: string;
-  type: 'pdf' | 'pbix' | 'xlsx' | 'csv' | 'github' | 'colab' | 'other';
+  type: 'pdf' | 'pbix' | 'xlsx' | 'csv' | 'github' | 'colab' | 'r' | 'other';
 }
 
 export interface Project {
@@ -159,6 +159,87 @@ Malgré des profils opposés (foi vs institutions, communauté vs individualisme
     status: 'published',
     publishedAt: '2026-03-15',
     tags: [tags[0]],
+  },
+  {
+    id: '2b',
+    slug: 'sae-statistiques-inference',
+    title: 'SAE Statistiques & Inférence — Sondage PACA et Enquête Sport Étudiant',
+    summary: 'Rapport d\'analyse statistique en R : estimation de la population PACA par sondage (SAS vs stratifié) et étude des liens entre pratique sportive et variables sociodémographiques par tests khi-deux.',
+    body: `# SAE – Statistiques et Inférence
+
+## Contexte du projet
+
+Projet de SAE (Situation d'Apprentissage et d'Évaluation) réalisé en binôme avec Mathéo Brigaud dans le cadre du BUT Science des Données (IUT de Niort, 2024–2025), encadré par M. Ibazizen.
+
+Le rapport présente deux études statistiques complémentaires menées sur des données réelles sous le logiciel **R**.
+
+---
+
+## Partie 1 — Sondage sur la population des communes de PACA
+
+### Objectif
+Estimer le nombre total d'habitants de la région **Provence-Alpes-Côte d'Azur** à partir d'un échantillon de communes, sans recenser la totalité des **961 communes** de la région.
+
+### Sondage aléatoire simple (SAS)
+Tirage d'un échantillon de **n = 50 communes** sans remise. L'estimateur du total est T̂ = N × x̄, avec intervalle de confiance à 95 % via le test de Student. Procédure répétée **10 fois** pour observer la variabilité.
+
+**Résultats :** marge d'erreur moyenne de **3 191 660 habitants**, estimation moyenne à **−12,7 %** du total réel (5 174 034 hab.).
+
+### Sondage stratifié
+Les communes sont réparties en **6 strates homogènes** selon leur taille (< 500 hab. jusqu'à > 20 000 hab.) avec **allocation proportionnelle**. L'estimateur de la moyenne stratifiée est x̄_st = Σ (Nh/N) × m_h.
+
+**Résultats :** marge d'erreur réduite à **1 296 906 habitants** (−59 % vs SAS), estimation moyenne à seulement **−0,8 %** du total réel.
+
+### Conclusion Partie 1
+Le sondage stratifié produit des estimations **nettement plus précises** à taille d'échantillon identique. En divisant la population en strates homogènes, on réduit la variance interne et donc l'incertitude globale — résultat illustrant l'intérêt de la stratification quand une variable auxiliaire est corrélée à la variable d'intérêt.
+
+---
+
+## Partie 2 — Enquête Sport Étudiant 2024
+
+### Objectif
+Identifier quelles variables sociodémographiques ou comportementales sont **significativement liées** à la pratique sportive déclarée, parmi 375 répondants étudiants en BUT à l'Université de Poitiers (361 après nettoyage — 75,3 % de pratiquants).
+
+### Méthodologie
+Pour 7 variables candidates (fan de sport, département de formation, réussite, alimentation, sexe, statut alternant, niveau), construction de tableaux croisés puis :
+- **Test du khi-deux** (H₀ : indépendance entre sport et la variable)
+- **V de Cramer** pour mesurer l'intensité de la liaison (0 = aucune, 1 = parfaite)
+
+### Résultats — 6 variables significatives (p < 0,05)
+
+| Variable | p-valeur | V de Cramer |
+|---|---|---|
+| Fan de sport | < 0,001 | **0,4453** (modérée) |
+| Réussite perçue | 0,001 | 0,2077 |
+| Département (GEA/HSE/SD) | < 0,001 | 0,2063 |
+| Alimentation | < 0,001 | 0,2028 |
+| Sexe | 0,001 | 0,1783 |
+| Statut alternant | 0,020 | 0,1222 |
+
+La variable **fan** est la plus discriminante : 196/272 pratiquants sont fans vs 19/89 non-pratiquants. La filière **GEA** est nettement moins sportive que HSE et SD.
+
+### Conclusion Partie 2
+La pratique sportive est un **comportement multifactoriel** — aucune variable prise isolément ne prédit fortement la pratique. Une approche multivariée (régression logistique) permettrait d'affiner ces conclusions.
+
+---
+
+## Technologies utilisées
+
+- **R** (readxl, sampling, chisq.test, V de Cramer)
+- **Excel** (visualisation des résultats, graphiques)`,
+    coverUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800',
+    files: [
+      { label: 'Rapport d\'analyse (PDF)',              url: '/projets/sae-statistiques-inference/rapport.pdf',                      type: 'pdf'   },
+      { label: 'Script R corrigé',                     url: '/projets/sae-statistiques-inference/script.R',                         type: 'r'     },
+      { label: 'Sujet de la SAE',                      url: '/projets/sae-statistiques-inference/sujet.pdf',                        type: 'pdf'   },
+      { label: 'Données enquête sport (.csv)',          url: '/projets/sae-statistiques-inference/EnqueteSportEtudiant2024.csv',     type: 'csv'   },
+      { label: 'Données enquête sport (.xlsx)',         url: '/projets/sae-statistiques-inference/EnqueteSportEtudiant2024.xlsx',    type: 'xlsx'  },
+      { label: 'Population communes France (.xlsx)',    url: '/projets/sae-statistiques-inference/population_francaise_communes.xlsx', type: 'xlsx' },
+    ],
+    featured: false,
+    status: 'published',
+    publishedAt: '2025-05-01',
+    tags: [tags[5], tags[4], tags[6]],
   },
   {
     id: '3',
