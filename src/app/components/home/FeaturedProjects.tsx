@@ -5,14 +5,9 @@ import { projects } from '../../data/mockData';
 
 export function FeaturedProjects() {
   const featured = [
+    projects.find((p) => p.slug === 'capritrack-suivi-pcr-mycoplasmes-caprins')!,
     projects.find((p) => p.slug === 'les-chemins-du-bonheur-power-bi')!,
     projects.find((p) => p.slug === 'greensd-gestion-logistique-verte')!,
-    {
-      id: 'ph1', slug: '', title: 'Projet à venir',
-      summary: 'Description disponible prochainement.',
-      coverUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800',
-      tags: [], featured: true, status: 'draft' as const, publishedAt: '', body: '',
-    },
   ];
 
   return (

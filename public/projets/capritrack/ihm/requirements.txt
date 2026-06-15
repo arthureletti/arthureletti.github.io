@@ -1,0 +1,11 @@
+streamlit>=1.40
+pandas
+plotly
+matplotlib
+openpyxl
+reportlab
+geopy
+requests
+Pillow
+xlrd
+streamlit-aggrid

@@ -57,9 +57,90 @@ export const tags: Tag[] = [
   { id: '7', name: 'enquete',       label: 'Enquête',       color: '#0369A1', category: 'Stats' },
   { id: '8', name: 'mysql',         label: 'MySQL',         color: '#059669', category: 'SQL'   },
   { id: '9', name: 'power-bi',      label: 'Power BI',      color: '#F2C811', category: 'Viz'   },
+  { id: '10', name: 'streamlit',    label: 'Streamlit',     color: '#FF4B4B', category: 'Viz'   },
+  { id: '11', name: 'sqlite',       label: 'SQLite',        color: '#044a64', category: 'SQL'   },
 ];
 
 export const projects: Project[] = [
+  {
+    id: 'capritrack',
+    slug: 'capritrack-suivi-pcr-mycoplasmes-caprins',
+    title: 'CapriTrack — Suivi PCR mycoplasmes caprins',
+    summary: "Application Streamlit complète pour le laboratoire Qualyse : import Excel, base SQLite, scoring des cheptels en 9 classes A-I, visualisations Plotly et cartographie géographique des Deux-Sèvres et de la Vienne.",
+    body: `# CapriTrack — Suivi des analyses PCR mycoplasmes caprins
+
+## Contexte du projet
+
+Projet de développement logiciel réalisé en groupe de 4 (Manon, Louis, Mathéo & Arthur) pour le Laboratoire Qualyse, un laboratoire d'analyses vétérinaires couvrant les départements 79 (Deux-Sèvres) et 86 (Vienne).
+
+L'objectif : concevoir un outil complet permettant aux techniciens de gérer, analyser et visualiser les résultats d'analyses PCR de mycoplasmes dans les cheptels caprins, en remplacement d'un suivi manuel sous Excel.
+
+## Fonctionnalités
+
+### Import des données
+- Lecture automatique de fichiers Excel au format Qualyse (dépt. 79 et 86)
+- Nettoyage et validation (dates, colonnes, structure)
+- Insertion en base SQLite avec gestion des doublons et des sessions
+
+### Visualisation & Analyses
+- Évolution temporelle des valeurs Ct par cheptel et par cible PCR
+- Répartition des cheptels par classe A à I (règles métier Qualyse)
+- Tableaux filtrables, graphiques interactifs Plotly
+- Export Excel formaté aux couleurs de la charte Qualyse
+
+### Cartographie
+- Visualisation géographique des cheptels sur carte interactive
+- Géocodage des communes via code INSEE avec cache persistant (geocache.json)
+- Affichage du niveau de positivité par commune et évolution entre sessions
+
+### Sauvegardes
+- Backup automatique de la base SQLite (10 dernières sauvegardes conservées)
+- Restauration depuis l'interface
+
+## Système de scoring — 9 classes métier
+
+Chaque cheptel est classé selon les 6 derniers résultats Ct valides :
+Classe A : Toujours négatif (cheptel sain)
+Classe B : Toujours positif (cheptel chroniquement infecté)
+Classe C : Nouveau positif (alerte — premier cas récent)
+Classe D : Fort positif récurrent (situation préoccupante)
+Classe E : Autre positif récurrent
+Classe F : Fort positif ponctuel
+Classe G : Autre positif ponctuel
+Classe H : Ancien positif (situation résolue)
+Classe I : Statut non défini (données insuffisantes)
+
+## Architecture
+
+ihm/ — Interface Streamlit, scoring, launcher
+script/ — Import Excel, gestion BDD, cartographie, erreurs
+SQL/ — Base SQLite + cache géocodage
+
+## Technologies utilisées
+
+- Python, Streamlit, Plotly
+- SQLite, Pandas, openpyxl, xlrd
+- Geopy (géocodage communes par code INSEE)`,
+    coverUrl: '/projets/capritrack-cover.png',
+    files: [
+      { label: 'Application principale (app.py)',       url: '/projets/capritrack/ihm/app.py',              type: 'r'     },
+      { label: 'Lanceur automatique (launcher.py)',      url: '/projets/capritrack/ihm/launcher.py',         type: 'r'     },
+      { label: 'Module scoring (scoring.py)',            url: '/projets/capritrack/ihm/scoring.py',          type: 'r'     },
+      { label: 'Dépendances (requirements.txt)',         url: '/projets/capritrack/ihm/requirements.txt',    type: 'other' },
+      { label: 'Base de données test (.db)',             url: '/projets/capritrack/ihm/mycoplasmes_test.db', type: 'other' },
+      { label: 'Cartographie (cartographie.py)',         url: '/projets/capritrack/script/cartographie.py',  type: 'r'     },
+      { label: 'Import Excel (code_import.py)',          url: '/projets/capritrack/script/code_import.py',   type: 'r'     },
+      { label: 'Gestion BDD (code_BD.py)',               url: '/projets/capritrack/script/code_BD.py',       type: 'r'     },
+      { label: 'Sauvegardes (code_backup.py)',           url: '/projets/capritrack/script/code_backup.py',   type: 'r'     },
+      { label: 'Exceptions (erreurs.py)',                url: '/projets/capritrack/script/erreurs.py',       type: 'r'     },
+      { label: 'Base de données (SQL/data.db)',          url: '/projets/capritrack/SQL/data.db',             type: 'other' },
+      { label: 'Cache géocodage (SQL/geocache.json)',    url: '/projets/capritrack/SQL/geocache.json',       type: 'other' },
+    ],
+    featured: true,
+    status: 'published',
+    publishedAt: '2026-06-01',
+    tags: [tags[0], tags[9], tags[10], tags[1]],
+  },
   {
     id: '0',
     slug: 'les-chemins-du-bonheur-power-bi',
